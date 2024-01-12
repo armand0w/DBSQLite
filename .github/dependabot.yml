@@ -9,15 +9,15 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-      time: "12:10"
+      time: "06:00"
       timezone: "America/Mexico_City"
-    target-branch: "dependabot"
+    target-branch: "dependencies"
     assignees:
       - "armand0w"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    target-branch: "dependabot"
+    target-branch: "dependencies"
     assignees:
       - "armand0w"
