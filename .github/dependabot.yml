@@ -9,7 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-      time: "12:00"
+      time: "12:10"
       timezone: "America/Mexico_City"
     target-branch: "dependabot"
     assignees:
