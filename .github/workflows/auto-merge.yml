@@ -2,7 +2,7 @@ name: CI Auto merge
 
 on:
   pull_request:
-    branches: [ experimental ]
+    branches: [ dependabot ]
 
 permissions:
   pull-requests: write

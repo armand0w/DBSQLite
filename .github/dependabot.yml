@@ -8,17 +8,16 @@ updates:
   - package-ecosystem: "maven" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
-      interval: weekly
-      day: friday
-      time: "06:30"
+      interval: "daily"
+      time: "12:00"
       timezone: "America/Mexico_City"
-    target-branch: "experimental"
+    target-branch: "dependabot"
     assignees:
       - "armand0w"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-    target-branch: "experimental"
+    target-branch: "dependabot"
     assignees:
       - "armand0w"
