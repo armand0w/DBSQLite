@@ -425,6 +425,28 @@ public class DBSQLite {
             closeConnection(connection);
         }
     }
+    
+    public int executeCountQuery(String query) throws DBException, SQLException {
+        Connection connection = null;
+        ResultSet resultSet = null;
+        
+        try {
+            connection = openConnection();
+            resultSet = connection.createStatement().executeQuery(query);
+            return resultSet.getInt(1);
+        } catch (Exception e) {
+            throw new DBException(e);
+        } finally {
+            if (resultSet != null && !resultSet.isClosed()) {
+                try {
+                    resultSet.close();
+                } catch (Exception e) {
+                    log.error(e.getMessage());
+                }
+            }
+            closeConnection(connection);
+        }
+    }
 
     private Object scapeValue(Object value) {
         if (value == null)

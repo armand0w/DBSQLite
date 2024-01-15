@@ -204,5 +204,11 @@ class DBSQLiteTest {
         assertNotEquals(0, pageScrollerCount.length());
         assertEquals(11, pageScrollerCount.length());
     }
-    
+
+    @Test
+    void testCountQuery() throws Exception {
+        var res = dbSqlite.executeCountQuery("SELECT COUNT(1) FROM staff");
+        assertNotEquals(0, res);
+        assertEquals(2, res);
+    }
 }
