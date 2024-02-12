@@ -1,0 +1,40 @@
+name: Maven test
+
+on:
+  push:
+    branches-ignore:
+      - dependencies
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build
+        run: mvn --batch-mode -DskipTests -e -B package
+
+      - name: Test
+        run: mvn --batch-mode -Dmaven.test.failure.ignore=true -e -B test
+
+      - name: Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Maven Tests
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: true
