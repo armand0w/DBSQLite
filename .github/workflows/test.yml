@@ -6,9 +6,7 @@ on:
       - dependencies
   workflow_dispatch:
 
-permissions:
-  pull-requests: write
-  contents: write
+permissions: write-all
 
 jobs:
   test:
