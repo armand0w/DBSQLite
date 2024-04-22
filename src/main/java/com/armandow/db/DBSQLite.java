@@ -17,7 +17,7 @@ public class DBSQLite {
     public DBSQLite(String fileName) {
         this.fileName = fileName;
     }
-    
+
     private Connection openConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:sqlite:" + this.fileName);
     }
@@ -197,8 +197,8 @@ public class DBSQLite {
         return result;
     }
 
-    public JSONObject executeQuery(String query) throws SQLException, DBException {
-        return executeQuery(query, null);
+    public int executeUpdate(String query) throws DBException, SQLException {
+        return this.executeUpdate(query, null);
     }
 
     public int executeUpdate(String query, JSONArray params) throws DBException, SQLException {
@@ -251,7 +251,11 @@ public class DBSQLite {
             closeConnection(connection);
         }
     }
-    
+
+    public JSONObject executeQuery(String query) throws SQLException, DBException {
+        return this.executeQuery(query, null);
+    }
+
     public JSONObject executeQuery(String query, JSONArray params) throws DBException, SQLException {
         var simpleDateTimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         var simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -425,11 +429,11 @@ public class DBSQLite {
             closeConnection(connection);
         }
     }
-    
+
     public int executeCountQuery(String query) throws DBException, SQLException {
         Connection connection = null;
         ResultSet resultSet = null;
-        
+
         try {
             connection = openConnection();
             resultSet = connection.createStatement().executeQuery(query);
