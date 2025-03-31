@@ -24,7 +24,7 @@
         <slf4j.version>2.0.17</slf4j.version>
         <junit.version>5.12.1</junit.version>
         <jacoco.version>0.8.12</jacoco.version>
-        <surefire-plugin.version>3.5.2</surefire-plugin.version>
+        <surefire-plugin.version>3.5.3</surefire-plugin.version>
         <shade-plugin.version>3.6.0</shade-plugin.version>
     </properties>
     
