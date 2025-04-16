@@ -23,13 +23,21 @@ jobs:
           java-version: '17'
           cache: maven
 
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Build
-        run: mvn --batch-mode -DskipTests -e -B package
+        run: mvn clean package --batch-mode -DskipTests -e -B
 
       - name: Test
-        run: mvn --batch-mode -Dmaven.test.failure.ignore=true -e -B test
+        run: mvn test -Dmaven.test.failure.ignore=true -e -B
 
-      - name: Report
+      - name: Test Report
         uses: dorny/test-reporter@v2
         if: always()
         with:

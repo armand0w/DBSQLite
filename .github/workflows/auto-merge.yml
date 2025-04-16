@@ -26,8 +26,29 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: Build with Maven
-        run: mvn clean verify jacoco:report -Pcoverage test -e -B --file pom.xml
+        run: mvn clean verify -DskipTests -e -B --file pom.xml
+
+      - name: Run Tests with Coverage
+        run: mvn test jacoco:report -Pcoverage -e -B -Dmaven.test.failure.ignore=true --file pom.xml
+
+      - name: Test Report
+        uses: dorny/test-reporter@v2
+        if: always()
+        with:
+          name: Maven Tests
+          path: target/surefire-reports/*.xml
+          reporter: java-junit
+          fail-on-error: true
 
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
@@ -37,35 +58,6 @@ jobs:
 
       - name: Enable auto-merge for Dependabot PRs
         run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Merge to develop branch
-        if: success()
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          
-          # Asegurar que tenemos las últimas actualizaciones
-          git fetch origin develop dependencies
-          
-          # Merge PR en dependencies
-          gh pr merge --auto --squash "$PR_URL"
-          
-          # Cambiar a develop y hacer merge desde origin/dependencies
-          git checkout develop
-          git pull origin develop
-          git merge origin/dependencies
-          
-          # Si el merge fue exitoso, hacer push
-          if [ $? -eq 0 ]; then
-            git push origin develop
-          else
-            echo "❌ Error durante el merge"
-            git merge --abort
-            exit 1
-          fi
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
