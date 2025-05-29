@@ -15,7 +15,6 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <json.version>20250517</json.version>
         <sqlite-jdbc.version>3.49.1.0</sqlite-jdbc.version>
@@ -24,8 +23,8 @@
         <slf4j.version>2.0.17</slf4j.version>
         <junit.version>5.12.2</junit.version>
         <jacoco.version>0.8.13</jacoco.version>
-        <shade-plugin.version>3.6.0</shade-plugin.version>
 
+        <shade-plugin.version>3.6.0</shade-plugin.version>
         <maven-compile-plugin.version>3.14.0</maven-compile-plugin.version>
         <surefire-plugin.version>3.5.3</surefire-plugin.version>
     </properties>
