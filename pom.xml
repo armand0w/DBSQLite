@@ -24,7 +24,7 @@
         <junit.version>5.13.4</junit.version>
         <jacoco.version>0.8.13</jacoco.version>
 
-        <shade-plugin.version>3.6.0</shade-plugin.version>
+        <shade-plugin.version>3.6.1</shade-plugin.version>
         <maven-compile-plugin.version>3.14.0</maven-compile-plugin.version>
         <surefire-plugin.version>3.5.3</surefire-plugin.version>
     </properties>
