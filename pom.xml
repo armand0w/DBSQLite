@@ -17,16 +17,16 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <json.version>20250517</json.version>
-        <sqlite-jdbc.version>3.50.2.0</sqlite-jdbc.version>
+        <sqlite-jdbc.version>3.50.3.0</sqlite-jdbc.version>
 
-        <lombok.version>1.18.38</lombok.version>
+        <lombok.version>1.18.42</lombok.version>
         <slf4j.version>2.0.17</slf4j.version>
-        <junit.version>5.13.3</junit.version>
+        <junit.version>5.13.4</junit.version>
         <jacoco.version>0.8.13</jacoco.version>
 
-        <shade-plugin.version>3.6.0</shade-plugin.version>
+        <shade-plugin.version>3.6.1</shade-plugin.version>
         <maven-compile-plugin.version>3.14.0</maven-compile-plugin.version>
-        <surefire-plugin.version>3.5.3</surefire-plugin.version>
+        <surefire-plugin.version>3.5.4</surefire-plugin.version>
     </properties>
     
     <dependencies>
