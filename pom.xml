@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <json.version>20250517</json.version>
+        <json.version>20251224</json.version>
         <sqlite-jdbc.version>3.51.1.0</sqlite-jdbc.version>
 
         <lombok.version>1.18.42</lombok.version>
